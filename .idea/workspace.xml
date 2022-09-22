@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e76bf1ec-210c-4299-a514-d17edefc7b0d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\apache-maven-3.6.2\localRespository" />
+        <option name="mavenHome" value="D:/apache-maven-3.6.2" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2F6eSHFk2wu8El4L5yAcsi5OnCC" />
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e76bf1ec-210c-4299-a514-d17edefc7b0d" name="Default Changelist" comment="" />
+      <created>1663816959180</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663816959180</updated>
+      <workItem from="1663816967337" duration="1000" />
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="457" y="23" key="CommitChangelistDialog2" timestamp="1663817015771">
+      <screen x="0" y="0" width="1920" height="1020" />
+    </state>
+    <state x="457" y="23" key="CommitChangelistDialog2/0.0.1920.1020@0.0.1920.1020" timestamp="1663817015771" />
+    <state x="558" y="287" key="com.intellij.ide.util.TipDialog" timestamp="1663816966318">
+      <screen x="0" y="0" width="1920" height="1020" />
+    </state>
+    <state x="558" y="287" key="com.intellij.ide.util.TipDialog/0.0.1920.1020@0.0.1920.1020" timestamp="1663816966318" />
+  </component>
+</project>
