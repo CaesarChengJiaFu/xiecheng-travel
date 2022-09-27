@@ -2,13 +2,6 @@
   background-color: rgb(0, 0, 0, 0.08);
 }
 
-.main-content {
-  margin-left: auto;
-  width: 80%;
-  min-height: 75vh;
-  margin-right: auto;
-}
-
 .side-menu {
   width: 40%
 }
