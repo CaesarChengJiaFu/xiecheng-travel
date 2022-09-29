@@ -3,12 +3,14 @@ import logo from './../../assets/images/logo.svg';
 import styles from './Header.module.css';
 import { Layout, Typography, Input, Menu, Button, Dropdown } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
-import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
+  const { t } = useTranslation()
 
   return (
     <div className={styles['app-header']}>
