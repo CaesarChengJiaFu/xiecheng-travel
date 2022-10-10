@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { Header, Footer, SideMenu, Carousel, ProductCollection, Companies } from '../../components';
 import { Row, Col, Typography, Spin } from 'antd';
-import { productList1, productList2, productList3 } from './mockups';
 import styles from './HomePage.module.css'
 import sideImage1 from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
-import { withRouter, RouteComponentProps } from '../../helpers/withRouter';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { fetchRecommendProductStartActionCreator, fetchRecommendProductSuccessActionCreator, fetchRecommendProductFailActionCreator } from "../../redux/recommendProducts/recommendProductsActions"
+import { giveMeDataActionCreator } from "../../redux/recommendProducts/recommendProductsActions"
 
 const mapStateToProps = (state: RootState) => {
     return {
@@ -23,49 +20,27 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchStart: () => {
-            dispatch(fetchRecommendProductStartActionCreator())
-        },
-        fectchSuccess: (data) => {
-            dispatch(fetchRecommendProductSuccessActionCreator(data))
-        },
-        fetchFail: (error) => {
-            dispatch(fetchRecommendProductFailActionCreator(error))
+        giveMeData: () => {
+            dispatch(giveMeDataActionCreator())
         }
     }
 }
 
-type PropsType = WithTranslation & 
-    ReturnType <typeof mapStateToProps> & 
-    ReturnType <typeof mapDispatchToProps>
+type PropsType = WithTranslation &
+    ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps>
 
 class HomePageComponent extends Component<PropsType> {
 
     async componentDidMount() {
-        this.props.fetchStart()
-        try {
-            const { data } = await axios.get("http://123.56.149.216:8080/api/productCollections", {
-                headers: {
-                    "x-icode": "68B3BD1D7CD6C14C"
-                }
-            });
-            this.props.fectchSuccess(data)
-        } catch (error) {
-            this.props.fetchFail(error)
-            // if(error instanceof Error) {
-            //     this.setState({
-            //         error: error.message,
-            //         loading: false
-            //     })
-            // }
-        }
+        this.props.giveMeData();
     }
 
     render(): React.ReactNode {
         const { t, productList, loading, error } = this.props; //t函数用于国际化
-        if(loading) {
+        if (loading) {
             return (
-                <Spin 
+                <Spin
                     size="large"
                     style={{
                         marginTop: 200,
@@ -73,12 +48,12 @@ class HomePageComponent extends Component<PropsType> {
                         marginLeft: "auto",
                         marginRight: "auto",
                         width: "100%"
-                    }}    
+                    }}
                 />
             )
         }
 
-        if(error) {
+        if (error) {
             return <div>网站出错：{error}</div>
         }
         return (
