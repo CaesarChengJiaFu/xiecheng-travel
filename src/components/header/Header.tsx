@@ -16,8 +16,8 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const params = useParams();
   const { t } = useTranslation()
-  const language = useSelector(state => state.language );
-  const languageList = useSelector(state => state.languageList );
+  const language = useSelector(state => state.languageReducer.language );
+  const languageList = useSelector(state => state.languageReducer.languageList );
   const dispatch = useDispatch();
 
   // const language = useSelector<RootState>(state => state.language)
