@@ -5,8 +5,8 @@ import { Spin, Row, Col, DatePicker, Divider, Typography, Menu, Anchor } from 'a
 import styles from './DetailPage.module.css';
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { commentMockData } from './mockup';
-import { productDetailSlice } from "../../redux/productDetail/slice";
-import { useSelector } from "../../redux/hooks";
+import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
+import { useSelector, useAppDispatch } from "../../redux/hooks";
 import { useDispatch } from 'react-redux';
 
 type MatchParams = {
@@ -26,31 +26,42 @@ export const DetailPage: React.FC = () => {
 
     const { RangePicker } = DatePicker;
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         // setLoading(true)
+    //         dispatch(productDetailSlice.actions.fetchStart())
+    //         try {
+    //             const { data } = await axios.get(
+    //                 `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`, {
+    //                 headers: {
+    //                     "x-icode": "68B3BD1D7CD6C14C"
+    //                 }
+    //             });
+    //             // setProduct(data)
+    //             // setLoading(false)
+    //             dispatch(productDetailSlice.actions.fetchSuccess(data))
+    //         } catch (error) {
+    //             // setError(error instanceof Error ? error.message : "error");
+    //             // setLoading(false)
+    //             dispatch(productDetailSlice.actions.fetchFail(
+    //                 error instanceof Error ? error.message : "error"
+    //             ))
+    //         }
+    //     }
+    //     fetchData()
+    // }, [])
+
+    //使用createAsyncThunk方式异步处理
     useEffect(() => {
-        const fetchData = async () => {
-            // setLoading(true)
-            dispatch(productDetailSlice.actions.fetchStart())
-            try {
-                const { data } = await axios.get(
-                    `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`, {
-                    headers: {
-                        "x-icode": "68B3BD1D7CD6C14C"
-                    }
-                });
-                // setProduct(data)
-                // setLoading(false)
-                dispatch(productDetailSlice.actions.fetchSuccess(data))
-            } catch (error) {
-                // setError(error instanceof Error ? error.message : "error");
-                // setLoading(false)
-                dispatch(productDetailSlice.actions.fetchFail(
-                    error instanceof Error ? error.message : "error"
-                ))
-            }
+        if(touristRouteId) {
+            //报错说明：类型“AsyncThunkAction<void, string, {}>”的参数不能赋给类型“AnyAction”的参数
+            //所以要给thunkAction创建一个自定义的钩子方法useAppDispatch来替代react-redux的useDispatch
+            //dispatch(getProductDetail(touristRouteId))
+
+            dispatch(getProductDetail(touristRouteId))
         }
-        fetchData()
     }, [])
 
     if (loading) {
