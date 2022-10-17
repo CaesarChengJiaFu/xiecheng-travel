@@ -14,7 +14,7 @@ export const FilterArea: React.FC = () => {
             <Divider dashed />
             <FilterTag title="旅程类型" tagsData={["跟团游", "自由行", "自驾游", "高端定制"]} />
             <Divider dashed />
-            <FilterTag title="触发事件" tagsData={["春节", "清明", "劳动节"]} />
+            <FilterTag title="出发时间" tagsData={["春节", "清明", "劳动节"]} />
         </div>
     </>
 }

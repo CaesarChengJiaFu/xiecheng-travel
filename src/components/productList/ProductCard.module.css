@@ -1,0 +1,28 @@
+.page-content-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    line-height: 20px;
+}
+
+.page-content-title-text {
+    margin-bottom: .5em;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.page-content-tags {
+    margin: 5px 0 5px 0;
+}
+
+.page-content-description {
+    margin: 5px 0 5px 0;
+}
+
+.page-content-estimate {
+    margin: 5px 0 5px 0;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+}
+

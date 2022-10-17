@@ -22,7 +22,7 @@ export const FilterTag: React.FC<PropsType> = ({title, tagsData}) => {
         <div className={styles["page-content"]}>
             <Text style={{ marginRight: 40, fontSize: 15, fontWeight: 500 }}>{title}：</Text>
             {tagsData.map((tag, index) => (
-                <span>
+                <span key={tag}>
                     <CheckableTag
                         key={tag}
                         checked={selectedTags.indexOf(tag) > -1}

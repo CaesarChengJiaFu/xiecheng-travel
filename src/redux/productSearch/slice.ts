@@ -24,9 +24,9 @@ export const searchProduct = createAsyncThunk(
         pageSize: number | string
     }, thunkAPI) => {
         let url = `http://123.56.149.216:8080/api/touristRoutes?pageNumber=${paramaters.nextPage}&pagesize=${paramaters.pageSize}`
-        if(paramaters.keywords) {
-            url += `&keyword=${paramaters.keywords}`
-        }
+        // if(paramaters.keywords) {
+        //     url += `&keyword=${paramaters.keywords}`
+        // }
         const response = await axios.get(url, {
             headers: {
                 "x-icode": "68B3BD1D7CD6C14C"
