@@ -1,0 +1,57 @@
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+interface UserState {
+    loading: boolean,
+    error: string | null,
+    token: string | null
+}
+
+const initialState: UserState = {
+    loading: false,
+    error: null,
+    token: null
+}
+
+export const signIn = createAsyncThunk(
+    "user/signIn",
+    async (paramaters: {
+        email: string,
+        password: string
+    }, thunkAPI) => {
+        let url = "http://123.56.149.216:8080/auth/login";
+        const { data } = await axios.post(url, {
+            email: paramaters.email,
+            password: paramaters.password
+        },
+        {
+            headers: {
+                "x-icode": "68B3BD1D7CD6C14C"
+            }
+        })
+
+        return data.token;
+    }
+)
+
+export const userSlice = createSlice({
+    name: "userSlice",
+    initialState,
+    reducers: {
+
+    },
+    extraReducers: {
+        [signIn.pending.type]: (state) => {
+            state.loading = true
+        },
+        [signIn.fulfilled.type]: (state, action) => {
+            state.token = action.payload.data;
+            state.loading = false;
+            state.error = null;
+        },
+        [signIn.rejected.type]: (state, action: PayloadAction<string | null>) => {
+            state.loading = false;
+            state.error = action.payload
+        }
+    }
+})

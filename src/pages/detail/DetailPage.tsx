@@ -8,6 +8,7 @@ import { commentMockData } from './mockup';
 import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
 import { useSelector, useAppDispatch } from "../../redux/hooks";
 import { useDispatch } from 'react-redux';
+import { MainLayout } from "../../layouts"
 
 type MatchParams = {
     touristRouteId: string,
@@ -55,7 +56,7 @@ export const DetailPage: React.FC = () => {
 
     //使用createAsyncThunk方式异步处理
     useEffect(() => {
-        if(touristRouteId) {
+        if (touristRouteId) {
             //报错说明：类型“AsyncThunkAction<void, string, {}>”的参数不能赋给类型“AnyAction”的参数
             //所以要给thunkAction创建一个自定义的钩子方法useAppDispatch来替代react-redux的useDispatch
             //dispatch(getProductDetail(touristRouteId))
@@ -84,8 +85,7 @@ export const DetailPage: React.FC = () => {
     }
 
     return <>
-        <Header />
-        <div className={styles["page-content"]}>
+        <MainLayout>
             <div className={styles["product-intro-container"]}>
                 <Row>
                     <Col span={13}>
@@ -148,7 +148,6 @@ export const DetailPage: React.FC = () => {
                     <ProductComments data={commentMockData} />
                 </div>
             </div>
-        </div>
-        <Footer />
+        </MainLayout>
     </>
 }
