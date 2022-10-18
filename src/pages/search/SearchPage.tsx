@@ -5,6 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { Spin, Typography, Pagination } from 'antd';
 import { searchProduct } from '../../redux/productSearch/slice';
 import { useSelector, useAppDispatch } from "../../redux/hooks";
+import { MainLayout } from "../../layouts"
 
 type MatchParams = {
     keywords: string;
@@ -53,9 +54,7 @@ export const SearchPage: React.FC = () => {
     }
 
     return <>
-        <Header />
-
-        <div className={styles["page-content"]}>
+        <MainLayout>
             <div className={styles["product-list-container"]}>
                 <FilterArea />
             </div>
@@ -63,7 +62,6 @@ export const SearchPage: React.FC = () => {
             <div className={styles["product-list-container"]}>
                 {productList ? <ProductList data={productList} pagination={pagination} onPageChange={onPageChange} /> : <h2>暂无数据</h2>}
             </div>
-        </div>
-        <Footer />
+        </MainLayout>
     </>
 }
