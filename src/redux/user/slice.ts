@@ -38,14 +38,18 @@ export const userSlice = createSlice({
     name: "userSlice",
     initialState,
     reducers: {
-
+        logOut: (state) => {
+            state.token = null;
+            state.error = null;
+            state.loading = false;
+        }
     },
     extraReducers: {
         [signIn.pending.type]: (state) => {
             state.loading = true
         },
         [signIn.fulfilled.type]: (state, action) => {
-            state.token = action.payload.data;
+            state.token = action.payload;
             state.loading = false;
             state.error = null;
         },

@@ -10,13 +10,11 @@ interface PropsTypes {
     children: React.ReactNode;
 }
 
-export const UserLayout: React.FC<PropsTypes> = (props) => {
-    const menu = (
-        <Menu>
-            <Menu.Item>中文</Menu.Item>
-            <Menu.Item>English</Menu.Item>
-        </Menu>
-    );
+export const UserLayout: React.FC<PropsTypes> = ({ children }) => {
+    const zhMenu = { label: '中文', key: 'zh' };
+    const enMenu = { label: 'English', key: 'en' };
+    const items = [zhMenu, enMenu];
+    const menu = <Menu selectedKeys={[]} items={items} />
 
     return (
         <Layout className={styles["user-layout-container"]}>
@@ -41,7 +39,7 @@ export const UserLayout: React.FC<PropsTypes> = (props) => {
                     <div className={styles["desc"]}>
                         CSDN 是我朝 最具影响力的线上充电学习网站
                     </div>
-                    {props.children}
+                    {children}
                 </div>
             </Content>
             <Footer style={{ textAlign: "center" }}>Footer后面再写。。。</Footer>
