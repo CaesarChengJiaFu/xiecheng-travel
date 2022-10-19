@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
           </Dropdown.Button>
           {jwt ?
             <Button.Group className={styles['button-group']}>
-              <span>{t("header.welcome")}</span>
+              <Typography.Text>{t("header.welcome")}</Typography.Text>
               <Typography.Text strong>{username}</Typography.Text>
               <Button>{t("header.shoppingCart")}</Button>
               <Button onClick={onLogout}>{t("header.signOut")}</Button>

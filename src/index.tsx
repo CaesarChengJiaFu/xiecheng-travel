@@ -6,14 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.min.css';
 import "./i18n/configs";
 import { Provider } from "react-redux";
+import rootStore from './redux/store'
 import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Provider store={store}>
-    <App />
+  <Provider store={rootStore.store}>
+    <PersistGate loading={null} persistor={rootStore.persister}>
+      <App />
+    </PersistGate>
   </Provider>
 );
 
