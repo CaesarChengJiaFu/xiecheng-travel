@@ -30,7 +30,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 const store = configureStore({
     reducer: persistedReducer,
     //使用getDefaultMiddleware函数是为了保证thunk中间件不被覆盖的前提下引入自定义中间件
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(actionLog),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            // 忽略 persist 的序列化警告
+            ignoredActions: ['persist/PERSIST']
+        }
+    }).concat(actionLog),
     devTools: true
 })
 
