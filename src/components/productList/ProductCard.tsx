@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductCard.module.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Rate, Space, Image, Tag, Typography, Row, Col, Divider } from "antd";
 import { LikeOutlined, StarOutlined } from "@ant-design/icons";
 
@@ -9,7 +9,7 @@ interface PropsType {
     price: string | number,
     title: string,
     originalPrice: string | number,
-    discountPresent: string | number,
+    discountPresent: string | number | null,
     travelDays: string,
     departureCity: string,
     rating: string | number
@@ -24,14 +24,12 @@ export const ProductCard: React.FC<PropsType> = ({ id, price, title, originalPri
             <Row>
                 <Col span={18}>
                     <Row>
-                        <div className={styles["page-content-title"]}>
-                            <Typography.Title level={4}>
-                                <Typography.Text delete={true}>￥ {originalPrice}</Typography.Text>
-                                <Typography.Text type="danger">￥ {price}</Typography.Text>
-                            </Typography.Title>
+                        <div className="">
+                            <Typography.Text delete={true} style={{fontSize: 20, fontWeight: 400}}>￥ {originalPrice}</Typography.Text>
+                            <Typography.Text type="danger" style={{fontSize: 20, fontWeight: 400}}>￥ {price}</Typography.Text>
                             <Typography.Text className={styles["page-content-title-text"]}>
-                                <Link to={`detail/${id}`}>
-                                    {title}
+                                <Link to={`detail/${id}`} title={title}>
+                                    {title.length > 50 ? title.slice(0, 50) + "..." : title}
                                 </Link>
                             </Typography.Text>
                         </div>

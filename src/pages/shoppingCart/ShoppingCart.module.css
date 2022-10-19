@@ -1,0 +1,28 @@
+
+
+.i-page-shopping-cart {
+    padding: 40px;
+    margin: 20px;
+    background-color: white;
+}
+
+.i-page-shoping-payments {
+    padding: 20px;
+    background-color: white;
+    margin: 20px 20px 20px 40px;
+}
+
+.i-page-shoping-payments-ori {
+    width: 100%;
+}
+
+.i-page-shoping-payments-pre {
+    width: 100%;
+    line-height: 32px;
+}
+
+.i-page-shoping-payments-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
