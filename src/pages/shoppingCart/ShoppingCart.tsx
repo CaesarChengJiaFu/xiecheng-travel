@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './ShoppingCart.module.css';
 import { MainLayout } from "../../layouts";
-import { Row, Col, Typography, List, Divider, Button, } from 'antd';
+import { Row, Col, Typography, List, Affix, Button } from 'antd';
 import { ProductCard } from '../../components/productList/ProductCard';
 import { CheckCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 
@@ -447,23 +447,24 @@ export const ShoppingCart: React.FC = () => {
                         </div>
                     </Col>
                     <Col span={7}>
-                        <div className={styles["i-page-shoping-payments"]}>
-                            <Typography.Title level={2}>总计</Typography.Title>
-                            <List
-                                bordered={false}
-                                dataSource={data}
-                                renderItem={item => (
-                                    <List.Item>
-                                        {item.description}
-                                    </List.Item>
-                                )}
-                            />
-                            
-                            <div className={styles["i-page-shoping-payments-btn"]}>
-                                <Button type="primary" danger><CheckCircleOutlined />下单支付</Button>
-                                <Button ><DeleteOutlined />清空</Button>
+                        <Affix>
+                            <div className={styles["i-page-shoping-payments"]}>
+                                <Typography.Title level={2}>总计</Typography.Title>
+                                <List
+                                    bordered={false}
+                                    dataSource={data}
+                                    renderItem={item => (
+                                        <List.Item>
+                                            {item.description}
+                                        </List.Item>
+                                    )}
+                                />
+                                <div className={styles["i-page-shoping-payments-btn"]}>
+                                    <Button type="primary" danger><CheckCircleOutlined />下单支付</Button>
+                                    <Button ><DeleteOutlined />清空</Button>
+                                </div>
                             </div>
-                        </div>
+                        </Affix>
                     </Col>
                 </Row>
             </div>
