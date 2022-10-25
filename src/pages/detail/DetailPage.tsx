@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Spin, Row, Col, DatePicker, Divider, Typography, Menu, Anchor } from 'antd';
+import { Spin, Row, Col, DatePicker, Divider, Typography, Menu, Anchor, Button } from 'antd';
 import styles from './DetailPage.module.css';
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { commentMockData } from './mockup';
 import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
 import { useSelector, useAppDispatch } from "../../redux/hooks";
 import { useDispatch } from 'react-redux';
-import { MainLayout } from "../../layouts"
+import { MainLayout } from "../../layouts";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { addShoppingCart } from "../../redux/shoppingCart/slice"
 
 type MatchParams = {
     touristRouteId: string,
@@ -23,11 +25,14 @@ export const DetailPage: React.FC = () => {
 
     const loading = useSelector(state => state.productDetailReducer.loading);
     const error = useSelector(state => state.productDetailReducer.error);
-    const product = useSelector(state => state.productDetailReducer.data)
+    const product = useSelector(state => state.productDetailReducer.data);
 
     const { RangePicker } = DatePicker;
 
     const dispatch = useAppDispatch();
+
+    const jwt = useSelector(s => s.user.token) as string;
+    const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -65,6 +70,25 @@ export const DetailPage: React.FC = () => {
         }
     }, [])
 
+    const menuItems = [
+        {
+            label: "产品特色",
+            key: "#feature"
+        },
+        {
+            label: "费用",
+            key: "#fees"
+        },
+        {
+            label: "预定须知",
+            key: "#notes"
+        },
+        {
+            label: "用户评价",
+            key: "#comments"
+        }
+    ]
+
     if (loading) {
         return (
             <Spin
@@ -97,10 +121,24 @@ export const DetailPage: React.FC = () => {
                             points={product.points}
                             discount={product.price}
                             rating={product.rating}
-                            pictures={product.touristRoutePictures.map((p) => p.url)}
+                            pictures={product.touristRoutePictures}
                         />
                     </Col>
                     <Col span={11}>
+                        <div className={styles["product-detail-container-btn"]}>
+                            <Button
+                                type="primary"
+                                danger
+                                loading={shoppingCartLoading}
+                                onClick={() => {
+                                    dispatch(
+                                        addShoppingCart({ jwt, touristRouteId: product.id })
+                                    )
+                                }}
+                            >
+                                <ShoppingCartOutlined />加入购物车
+                            </Button>
+                        </div>
                         <RangePicker open style={{ marginTop: 20 }} />
                     </Col>
                 </Row>

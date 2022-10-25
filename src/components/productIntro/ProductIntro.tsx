@@ -11,7 +11,7 @@ interface PropsType {
     points: string,
     discount: string,
     rating: string | number,
-    pictures: string[]
+    pictures: any[]
 }
 
 interface RowType {
@@ -48,12 +48,12 @@ export const ProductIntro: React.FC<PropsType> = ({
 }) => {
     const tableDataSource: RowType[] = [
         {
-            key: 0,
+            key: 1,
             title: "路线名称",
             description: title,
         },
         {
-            key: 1,
+            key: 2,
             title: "价格",
             description: (
                 <>
@@ -65,7 +65,7 @@ export const ProductIntro: React.FC<PropsType> = ({
             ),
         },
         {
-            key: 2,
+            key: 3,
             title: "限时抢购折扣",
             description: discount ? (
                 <>
@@ -79,12 +79,12 @@ export const ProductIntro: React.FC<PropsType> = ({
             ),
         },
         {
-            key: 2,
+            key: 4,
             title: "领取优惠",
             description: coupons ? discount : "无优惠券可领",
         },
         {
-            key: 2,
+            key: 5,
             title: "线路评价",
             description: (
                 <>
@@ -112,7 +112,7 @@ export const ProductIntro: React.FC<PropsType> = ({
             <div>
                 <Carousel autoplay slidesToShow={3}>
                     {pictures.map(p =>
-                        <Image height={150} src={p} />
+                        <Image height={150} src={p.url} key={p.id} />
                     )}
                 </Carousel>
                 <Table columns={columns} dataSource={tableDataSource} size="small" bordered={false} pagination={false} />

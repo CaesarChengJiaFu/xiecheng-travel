@@ -8,10 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 // import { useSelctor } from 'react/hooks';// 使用TypeUseSelectorHook这个interface 来重新定义 useSelector这个hook
 // import { RootState } from "../../redux/store";
-import { useSelector } from '../../redux/hooks';
+import { useSelector, useAppDispatch } from '../../redux/hooks';
 import { addLanguageActionCreator, changeLanguageActionCreator } from "../../redux/language/languageActions";
 import jwt_decode, { JwtPayload as DefaultJwtPayload } from 'jwt-decode';
 import { userSlice } from "../../redux/user/slice";
+import { getShoppingCart } from "../../redux/shoppingCart/slice"
 
 interface JwtPayload extends DefaultJwtPayload {
   username: string
@@ -25,15 +26,19 @@ export const Header: React.FC = () => {
   const language = useSelector(state => state.languageReducer.language);
   const languageList = useSelector(state => state.languageReducer.languageList);
   const dispatch = useDispatch();
+  const appDispatch = useAppDispatch()
 
   const jwt = useSelector(s => s.user.token);
   
   const [username, setUsername] = useState("");
+  const shoppingCartItems = useSelector(s => s.shoppingCart.items);
+  const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
 
   useEffect(() => {
     if (jwt) {
       const token = jwt_decode<JwtPayload>(jwt);
       setUsername(token.username)
+      appDispatch(getShoppingCart(jwt))
     }
   }, [jwt])
 
@@ -81,7 +86,7 @@ export const Header: React.FC = () => {
             <Button.Group className={styles['button-group']}>
               <Typography.Text>{t("header.welcome")}</Typography.Text>
               <Typography.Text strong>{username}</Typography.Text>
-              <Button onClick={() => navigate('/shoppingCart')}>{t("header.shoppingCart")}</Button>
+              <Button loading={shoppingCartLoading} onClick={() => navigate('/shoppingCart')}>{t("header.shoppingCart")}({shoppingCartItems.length})</Button>
               <Button onClick={onLogout}>{t("header.signOut")}</Button>
             </Button.Group>
             :

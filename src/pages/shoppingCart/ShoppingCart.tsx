@@ -4,6 +4,7 @@ import { MainLayout } from "../../layouts";
 import { Row, Col, Typography, List, Affix, Button } from 'antd';
 import { ProductCard } from '../../components/productList/ProductCard';
 import { CheckCircleOutlined, DeleteOutlined } from '@ant-design/icons';
+import { useSelector, useAppDispatch } from "../../redux/hooks";
 
 export const ShoppingCart: React.FC = () => {
     const dataList = [
@@ -384,6 +385,9 @@ export const ShoppingCart: React.FC = () => {
         }
     ]
 
+    const shoppingCartItems = useSelector(s => s.shoppingCart.items);
+    console.log(shoppingCartItems, "取出来瞅瞅！！！")
+
     const data = [
         {
             key: 0,
@@ -426,7 +430,7 @@ export const ShoppingCart: React.FC = () => {
                     <Col span={17}>
                         <div className={styles["i-page-shopping-cart"]}>
                             {
-                                dataList.map(item =>
+                                shoppingCartItems && shoppingCartItems.length > 0 ? shoppingCartItems.map(item =>
                                     <div key={item.id}>
                                         <ProductCard
                                             id={item.id}
@@ -442,7 +446,7 @@ export const ShoppingCart: React.FC = () => {
                                             imgUrl={item.touristRoutePictures[0].url || ""}
                                         />
                                     </div>
-                                )
+                                ): <h2>暂无数据</h2>
                             }
                         </div>
                     </Col>
