@@ -50,6 +50,24 @@ export const addShoppingCart = createAsyncThunk(
     }
 );
 
+//购物车结算
+export const checkout = createAsyncThunk(
+    "shoppingCart/checkout",
+    async (jwt: string, thunkAPI) => {
+        const { data } = await axios.post(
+            `http://123.56.149.216:8080/api/shoppingCart/checkout`,
+            null,
+            {
+                headers: {
+                    "x-icode": "68B3BD1D7CD6C14C",
+                    Authorization: `bearer ${jwt}`
+                }
+            }
+        );
+        return data;
+    }
+)
+
 //清空购物车
 export const clearShoppingCartItem = createAsyncThunk(
     "shoppingCart/clearShoppingCartItem",
@@ -106,6 +124,21 @@ export const shoppingCartSlice = createSlice({
         [clearShoppingCartItem.rejected.type]: (state, action: PayloadAction<string | null>) => {
             state.loading = false;
             state.error = action.payload
-        }
+        },
+        [checkout.pending.type]: (state) => {
+            state.loading = true;
+        },
+        [checkout.fulfilled.type]: (state, action) => {
+            state.items = [];
+            state.loading = false;
+            state.error = null;
+        },
+        [checkout.rejected.type]: (
+            state,
+            action: PayloadAction<string | null>
+        ) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
     }
 })

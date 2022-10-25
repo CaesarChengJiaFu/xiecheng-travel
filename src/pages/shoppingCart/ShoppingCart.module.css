@@ -12,8 +12,12 @@
     margin: 20px 20px 20px 40px;
 }
 
-.i-page-shoping-payments-ori {
+.i-page-shoping-payments-item {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
 }
 
 .i-page-shoping-payments-pre {
@@ -22,6 +26,7 @@
 }
 
 .i-page-shoping-payments-btn {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;

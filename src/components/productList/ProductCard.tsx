@@ -39,7 +39,7 @@ export const ProductCard: React.FC<PropsType> = ({ id, price, title, originalPri
                             <Tag color="#f50">{`${departureCity}出发`}</Tag>
                             <Tag color="#2db7f5">{`${travelDays}days`}</Tag>
                             {discountPresent === 0.1 ? <Tag color="#87d068">超低折扣</Tag> : <></>}
-                            <Tag color="#108ee9">{tripType}</Tag>
+                            {tripType ? <Tag color="#108ee9">{tripType}</Tag> : <></>}
                         </div>
                     </Row>
                     <Row>
