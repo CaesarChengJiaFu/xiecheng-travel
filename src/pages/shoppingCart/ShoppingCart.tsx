@@ -17,13 +17,17 @@ export const ShoppingCart: React.FC = () => {
 
     const navigate = useNavigate()
 
-    const originalPrice = shoppingCartItems && shoppingCartItems.length > 0 ? shoppingCartItems.reduce((pre, cur) => {
-        return pre + Number(cur.touristRoute.originalPrice)
-    }, 0) : 0;
+    const originalPrice = shoppingCartItems && shoppingCartItems.length > 0 ? parseInt(
+        shoppingCartItems.reduce((pre, cur) => {
+            return pre + Number(cur.touristRoute.originalPrice)
+        }, 0)
+    ) : 0;
 
-    const price = shoppingCartItems && shoppingCartItems.length > 0 ? shoppingCartItems.reduce((pre, cur) => {
-        return pre + Number(cur.touristRoute.price)
-    }, 0) : 0;
+    const price = shoppingCartItems && shoppingCartItems.length > 0 ? parseInt(
+        shoppingCartItems.reduce((pre, cur) => {
+            return pre + Number(cur.touristRoute.price)
+        }, 0)
+    ) : 0;
 
     const handlerClearShoppingCarts = () => {
         dispatch(clearShoppingCartItem({ jwt, itemIds: shoppingCartItems.map(s => s.id) }))
@@ -82,7 +86,7 @@ export const ShoppingCart: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className={styles["i-page-shoping-payments-btn"]}>
-                                    <Button type="primary" danger disabled={shoppingCartItems.length <= 0} onClick={handlerPayShoppingCarts}><CheckCircleOutlined />下单支付</Button>
+                                    <Button type="primary" danger disabled={shoppingCartItems.length <= 0}><CheckCircleOutlined />下单支付</Button>
                                     <Button disabled={shoppingCartItems.length <= 0} onClick={handlerClearShoppingCarts}><DeleteOutlined />清空</Button>
                                 </div>
                             </div>

@@ -25,8 +25,8 @@ export const ProductCard: React.FC<PropsType> = ({ id, price, title, originalPri
                 <Col span={18}>
                     <Row>
                         <div className="">
-                            <Typography.Text delete={true} style={{fontSize: 20, fontWeight: 400}}>￥ {originalPrice}</Typography.Text>
-                            <Typography.Text type="danger" style={{fontSize: 20, fontWeight: 400}}>￥ {price}</Typography.Text>
+                            <Typography.Text delete={true} style={{fontSize: 20, fontWeight: 400}}>￥ {parseInt(String(originalPrice))}</Typography.Text>
+                            <Typography.Text type="danger" style={{fontSize: 20, fontWeight: 400}}>￥ {parseInt(String(price))}</Typography.Text>
                             <Typography.Text className={styles["page-content-title-text"]}>
                                 <Link to={`detail/${id}`} title={title}>
                                     {title.length > 50 ? title.slice(0, 50) + "..." : title}

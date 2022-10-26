@@ -19,10 +19,6 @@ type MatchParams = {
 
 export const DetailPage: React.FC = () => {
     const { touristRouteId } = useParams<MatchParams>();
-    // const [loading, setLoading] = useState<boolean>(true);
-    // const [product, setProduct] = useState<any>(null);
-    // const [error, setError] = useState<string | null>(null);
-
     const loading = useSelector(state => state.productDetailReducer.loading);
     const error = useSelector(state => state.productDetailReducer.error);
     const product = useSelector(state => state.productDetailReducer.data);
@@ -33,31 +29,7 @@ export const DetailPage: React.FC = () => {
 
     const jwt = useSelector(s => s.user.token) as string;
     const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         // setLoading(true)
-    //         dispatch(productDetailSlice.actions.fetchStart())
-    //         try {
-    //             const { data } = await axios.get(
-    //                 `http://123.56.149.216:8080/api/touristRoutes/${touristRouteId}`, {
-    //                 headers: {
-    //                     "x-icode": "68B3BD1D7CD6C14C"
-    //                 }
-    //             });
-    //             // setProduct(data)
-    //             // setLoading(false)
-    //             dispatch(productDetailSlice.actions.fetchSuccess(data))
-    //         } catch (error) {
-    //             // setError(error instanceof Error ? error.message : "error");
-    //             // setLoading(false)
-    //             dispatch(productDetailSlice.actions.fetchFail(
-    //                 error instanceof Error ? error.message : "error"
-    //             ))
-    //         }
-    //     }
-    //     fetchData()
-    // }, [])
+    const shoppingCartItems = useSelector(S => S.shoppingCart.items) || [];
 
     //使用createAsyncThunk方式异步处理
     useEffect(() => {
@@ -130,6 +102,7 @@ export const DetailPage: React.FC = () => {
                                 type="primary"
                                 danger
                                 loading={shoppingCartLoading}
+                                disabled={shoppingCartItems.findIndex(i => i.touristRoute.id === product.id) > -1}
                                 onClick={() => {
                                     dispatch(
                                         addShoppingCart({ jwt, touristRouteId: product.id })
